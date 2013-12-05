@@ -146,6 +146,39 @@ if (process.env['BENCHMARK']) (function () {
 			}
 		}
 	});
+	
+	var data = new Uint8Array(1024);
+	var typed1 = new RingBuffer.Typed2D(Uint8Array, 1024, 100);
+	var typed2 = new RingBuffer(new Array(100));
+	for (var i = 0; i < 100; i++) {
+		typed2.put(new Uint8Array(1024));
+	}
+
+	benchmark({
+		"RingBuffer.Typed2D" : function () {
+			for (var i = 0; i < 200; i++) {
+				typed1.nextSubarray().set(data, 0);
+			}
+
+			var a;
+			for (var i = 0; i < 200; i++) {
+				a = typed1.get(i);
+			}
+		},
+		"RingBuffer" : function () {
+			for (var i = 0; i < 200; i++) {
+				var buf = typed2.remove();
+				buf.set(data, 0);
+				typed2.put(buf);
+			}
+
+			var a;
+			for (var i = 0; i < 200; i++) {
+				a = typed1[0];
+			}
+		}
+	});
+
 	// ============================================================================
 	// try n counts in 1sec
 	function measure (fun) {
