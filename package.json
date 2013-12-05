@@ -1,0 +1,20 @@
+{
+  "name": "ring_buffer.js",
+  "version": "0.0.1",
+  "description": "RingBuffer",
+  "main": "lib/ring_buffer.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test/js"
+  },
+  "repository": "",
+  "keywords": [
+    "ringbuffer",
+    "ring",
+    "buffer"
+  ],
+  "author": "cho45",
+  "license": "BSD"
+}
