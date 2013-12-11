@@ -174,7 +174,7 @@ if (process.env['BENCHMARK']) (function () {
 
 			var a;
 			for (var i = 0; i < 200; i++) {
-				a = typed1[0];
+				a = typed2.get(i);
 			}
 		}
 	});
